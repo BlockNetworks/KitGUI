@@ -5,13 +5,13 @@ version: 1.0
 author: ethaniccc
 
 commands:
- kits:
-  description: Opens the KitGUI
- seekit:
-  description: View contents inside of a kit using a GUI
- kitinfo:
-  description: Plugin credits for KitGUI + more!
- xyz:
-  description: Get your XYZ
- rmkitgui:
-  description: Deletes KitGUI if improper credits are given!
+  kits:
+    description: Opens the KitGUI
+  seekit:
+    description: View contents inside of a kit using a GUI
+  kitinfo:
+    description: Plugin credits for KitGUI + more!
+  xyz:
+    description: Get your XYZ
+  rmkitgui:
+    description: Deletes KitGUI if improper credits are given!
